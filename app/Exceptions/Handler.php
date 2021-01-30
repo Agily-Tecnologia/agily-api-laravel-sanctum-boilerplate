@@ -46,6 +46,9 @@ class Handler extends ExceptionHandler
                 }
 
                 $statusCode = !empty($e->getCode()) ? $e->getCode() : 500;
+                $statusCode = !empty($e->getStatusCode()) ? $e->getStatusCode() : $statusCode;
+                $statusCode = !empty($e->status) ? $e->status : $statusCode;
+
                 return response()->json($e->getMessage(), $statusCode);
             }
         });
