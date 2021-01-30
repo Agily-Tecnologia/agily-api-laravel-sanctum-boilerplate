@@ -33,6 +33,10 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->renderable(function (\Exception $e, $request) {
+            return response()->json($e->getMessage(), 400);
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
